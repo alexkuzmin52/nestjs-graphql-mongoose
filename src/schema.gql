@@ -1,0 +1,64 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  name: String!
+  email: String!
+  password: String!
+  role: String
+  status: String
+}
+
+type IUser {
+  _id: String!
+  name: String!
+  email: String!
+  password: String!
+  role: String
+  status: String
+}
+
+type AuthRegisterResponseDto {
+  message: String!
+  token: String!
+}
+
+type AuthConfirmResponseDto {
+  message: String!
+}
+
+type AuthLoginResponseDto {
+  access_token: String!
+  refresh_token: String!
+}
+
+type AuthDeleteResponseDto {
+  message: String!
+}
+
+type Query {
+  world: String!
+  users: [IUser!]!
+
+  """Getting user by his Id"""
+  userById(id: String!): User!
+  confirm(confirm_token: String!): AuthConfirmResponseDto!
+}
+
+type Mutation {
+  register(user: CreateUserInput!): AuthRegisterResponseDto!
+  login(credential: AuthLoginInput!): AuthLoginResponseDto!
+  delete(userId: String!): AuthDeleteResponseDto!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input AuthLoginInput {
+  email: String!
+  password: String!
+}
